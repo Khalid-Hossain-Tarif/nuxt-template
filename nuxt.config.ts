@@ -1,4 +1,5 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+import { i18nConfig } from './i18n.config';
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
@@ -22,60 +23,7 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/i18n'],
 
-  i18n: {
-    detectBrowserLanguage: {
-      useCookie: true,
-      cookieKey: 'lang',
-      alwaysRedirect: false
-    },
-    defaultLocale: 'en',
-    locales: [
-      {
-        code: 'en',
-        name: 'English',
-        file: 'home/en.json',
-        iso:'en-US',
-        dir: 'ltr'
-      },
-      {
-        code: 'bn',
-        name: 'বাংলা',
-        file: 'home/bn.json',
-        iso:'bn-BD',
-        dir: 'rtl'
-      },
-      {
-        code: 'en',
-        name: 'English',
-        file: 'about/en.json',
-        iso:'en-US',
-        dir: 'ltr'
-      },
-      {
-        code: 'bn',
-        name: 'বাংলা',
-        file: 'about/bn.json',
-        iso:'bn-BD',
-        dir: 'rtl'
-      },
-      {
-        code: 'en',
-        name: 'English',
-        file: 'contact/en.json',
-        iso:'en-US',
-        dir: 'ltr'
-      },
-      {
-        code: 'bn',
-        name: 'বাংলা',
-        file: 'contact/bn.json',
-        iso:'bn-BD',
-        dir: 'rtl'
-      },
-    ],
-    // fallbackLocale: 'en',
-    langDir: 'locales',
-  },
+  i18n: i18nConfig,
 
   // Defaults options
   tailwindcss: {
