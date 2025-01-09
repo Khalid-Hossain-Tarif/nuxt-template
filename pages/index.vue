@@ -2,6 +2,7 @@
 
 <template>
   <div>
-    Main content
+    <p>Main content</p>
+    <Button variant="secondary">Click me</Button>
   </div>
 </template>
