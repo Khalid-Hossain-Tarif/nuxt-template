@@ -3,7 +3,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'selector',
-  // safelist: ["dark"],
+  safelist: ["dark"],
   prefix: "",
 
   theme: {

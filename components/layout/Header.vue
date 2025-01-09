@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ColorModeSwitcher from "~/components/app/ColorModeSwitcher.vue";
 </script>
 
 <template>
@@ -11,11 +12,13 @@
 
         <nav>
           <ul class="flex items-center gap-x-5">
-            <li><NuxtLink to="/" class="text-dark hover:text-secondary">Home</NuxtLink></li>
-            <li><NuxtLink to="/about" class="text-dark hover:text-secondary">About</NuxtLink></li>
-            <li><NuxtLink to="/contact" class="text-dark hover:text-secondary">Contact</NuxtLink></li>
+            <li><NuxtLink to="/" class="text-dark-secondary hover:text-secondary">Home</NuxtLink></li>
+            <li><NuxtLink to="/about" class="text-dark-secondary hover:text-secondary">About</NuxtLink></li>
+            <li><NuxtLink to="/contact" class="text-dark-secondary hover:text-secondary">Contact</NuxtLink></li>
           </ul>
         </nav>
+
+        <ColorModeSwitcher class="shrink-0" />
       </div>
     </div>
   </header>
@@ -23,6 +26,6 @@
 
 <style scoped>
 .router-link-exact-active {
-  @apply font-medium text-secondary
+  @apply text-secondary
 }
 </style>
