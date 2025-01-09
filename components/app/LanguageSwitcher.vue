@@ -22,8 +22,8 @@ const selectedLocale = computed(() => {
       </DropdownMenuTrigger>
       <DropdownMenuContent class="z-[999] bg-white">
         <DropdownMenuSeparator />
-        <DropdownMenuItem as-child v-for="language in locales" :key="language?.code">
-          <nuxt-link :to="switchLocalePath(language?.code)">{{ language?.name }}</nuxt-link>
+        <DropdownMenuItem as-child v-for="locale in locales" :key="locale?.code">
+          <nuxt-link :to="switchLocalePath(locale?.code)">{{ locale?.name }}</nuxt-link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
