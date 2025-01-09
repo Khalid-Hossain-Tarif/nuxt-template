@@ -20,7 +20,34 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/i18n'],
+
+  i18n: {
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'lang',
+      alwaysRedirect: false
+    },
+    defaultLocale: 'en',
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en.json',
+        iso:'en-US',
+        dir: 'ltr'
+      },
+      {
+        code: 'bn',
+        name: 'Bangla',
+        file: 'bn.json',
+        iso:'bn-BD',
+        dir: 'rtl'
+      },
+    ],
+    // fallbackLocale: 'en',
+    langDir: 'locales',
+  },
 
   // Defaults options
   tailwindcss: {
