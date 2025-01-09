@@ -9,8 +9,8 @@ const localePath = useLocalePath()
   <header class="bg-background-shade3 border-b border-borderColor-secondary">
     <div class="container py-5">
       <div class="flex items-center justify-between gap-x-4">
-        <nuxt-link to="/" class="shrink-0 text-secondary hover:text-primary font-semibold text-lg">
-          Nuxt Template
+        <nuxt-link :to="localePath('/')" class="shrink-0 text-secondary hover:text-primary font-semibold text-lg">
+          Nuxt
         </nuxt-link>
 
         <nav>
@@ -21,8 +21,10 @@ const localePath = useLocalePath()
           </ul>
         </nav>
 
-        <LanguageSwitcher />
-        <ColorModeSwitcher class="shrink-0" />
+        <div class="flex items-center gap-x-3">
+          <LanguageSwitcher />
+          <ColorModeSwitcher class="shrink-0" />
+        </div>
       </div>
     </div>
   </header>

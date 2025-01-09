@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const localePath = useLocalePath()
 </script>
 
 <template>
@@ -10,9 +11,9 @@
         </nuxt-link>
         <nav>
           <ul class="flex items-center justify-center gap-x-5">
-            <li><NuxtLink to="/" class="text-dark-secondary hover:text-secondary">Home</NuxtLink></li>
-            <li><NuxtLink to="/about" class="text-dark-secondary hover:text-secondary">About</NuxtLink></li>
-            <li><NuxtLink to="/contact" class="text-dark-secondary hover:text-secondary">Contact</NuxtLink></li>
+            <li><NuxtLink :to="localePath('/')"  class="text-dark-secondary hover:text-secondary">Home</NuxtLink></li>
+            <li><NuxtLink :to="localePath('/about')" class="text-dark-secondary hover:text-secondary">About</NuxtLink></li>
+            <li><NuxtLink :to="localePath('/contact')" class="text-dark-secondary hover:text-secondary">Contact</NuxtLink></li>
           </ul>
         </nav>
       </div>

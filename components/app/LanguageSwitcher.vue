@@ -17,11 +17,13 @@ const selectedLocale = computed(() => {
 <template>
   <client-only>
     <DropdownMenu>
-      <DropdownMenuTrigger class="bg-red-500 text-white p-1 mr-2 my-2">{{ selectedLocale?.name }}</DropdownMenuTrigger>
+      <DropdownMenuTrigger class="w-[80px] py-2 px-3 rounded bg-secondary-light text-secondary text-sm font-medium">
+        {{ selectedLocale?.name }}
+      </DropdownMenuTrigger>
       <DropdownMenuContent class="z-[999] bg-white">
         <DropdownMenuSeparator />
-        <DropdownMenuItem as-child v-for="language in locales">
-          <nuxt-link :to="switchLocalePath(language.code)">{{ language.name }}</nuxt-link>
+        <DropdownMenuItem as-child v-for="language in locales" :key="language?.code">
+          <nuxt-link :to="switchLocalePath(language?.code)">{{ language?.name }}</nuxt-link>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

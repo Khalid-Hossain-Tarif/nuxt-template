@@ -3,6 +3,6 @@
 
 <template>
   <div>
-    Contact
+    <p>{{ $t('CONTACT') }}</p>
   </div>
 </template>

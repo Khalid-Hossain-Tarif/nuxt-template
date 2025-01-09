@@ -3,6 +3,6 @@
 
 <template>
   <div>
-    About
+    <p>{{ $t('ABOUT') }}</p>
   </div>
 </template>
