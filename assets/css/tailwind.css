@@ -49,7 +49,7 @@
         --text-tertiary: #475467;
         --text-quaternary: #667085;
 
-        --background: #F8FAFF;
+        --background: #fff;
         --background-shade-3: #F4F8FB;
         /*--surface: #EFF7FD;*/
 
@@ -88,7 +88,7 @@
         --primary: #0C3B64;
         /*--primary-light: #FEF2F0;*/
         /*--primary-dark: #F15342;*/
-        /*--secondary: #F15342;*/
+        --secondary: #F15342;
         /*--secondary-light: #CFE6F9;*/
         /*--secondary-dark: #104E85;*/
         /*!*--tertiary: #EFF7FD;*!*/
@@ -111,7 +111,7 @@
         /*--gray-shade4: #B6B6B6;*/
         /*--gray-shade5: #A4A4A4;*/
 
-        /*--background: #F8FAFF;*/
+        --background: #333;
         /*--background-shade-3: #F4F8FB;*/
         /*!*--surface: #EFF7FD;*!*/
 
