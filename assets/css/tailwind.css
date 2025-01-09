@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --primary: #F04935;
+        --primary-light: #F7A299;
+        --primary-light-2: #FEF2F0;
+        --primary-light-3: #F5887C;
+        --primary-dark: #F15342;
+        --secondary: #0C3B64;
+        --secondary-light: #CFE6F9;
+        --secondary-dark: #104E85;
+        /*--tertiary: #EFF7FD;*/
+        --success: #48A43F;
+        --success-light: #ECFDF3;
+        --success-dark: #067647;
+        --success-dark2: #84CD7D;
+        --danger: #E0293B;
+        --danger-light: #FDF0F1;
+        --danger-light2: #be5861;
+        --warning: #FFB728;
+        --info: #1E88E5;
+        --info-secondary: #2F91E7;
+        --info-dark: #026AA2;
+        --info-light: #8FC4F2;
+        --info-light2: #EFF7FD;
+        --info-light3: #DFEEFB;
+        --info-light4: #F0F9FF;
+        --info-light5: #B9E6FE;
+
+        --dark: #151414;
+        --dark-primary: #141B34;
+        --dark-secondary: #4D4D4F;
+        --dark-shade-1: #676769;
+        --dark-shade-2: #747476;
+        --dark-shade-3: #8D8D8F;
+        --dark-shade-6: #929292;
+        --gray: #EDEDED;
+        --gray-light: #DBDBDB;
+        --gray-shade3: #C8C8C8;
+        --gray-shade4: #B6B6B6;
+        --gray-shade5: #A4A4A4;
+        --gray-shade6: #D9D9D9;
+
+        --text-primary: #4D4D4F;
+        --text-secondary: #344054;
+        --text-tertiary: #475467;
+        --text-quaternary: #667085;
+
+        --background: #F8FAFF;
+        --background-shade-3: #F4F8FB;
+        /*--surface: #EFF7FD;*/
+
+        --link: #F04935;
+        --disabled: #EFF7FD;
+
+        --border: #D0D5DD;
+        --border-primary: #CFD4DC;
+        --border-secondary: #EAECF0;
+        --border-light: #EDEDED;
+        --ring: rgba(12, 59, 100, 0.09);
+        --ring-secondary: rgba(16, 24, 40, 0.05);
+        --ring-light: rgba(21, 108, 183, 0.16);
+        --ring-dark: rgba(16, 78, 133, 0.32);
+        --ring-gray: rgba(152, 162, 179, 0.14);
+        --input: #EFF7FD;
+
+        --foreground: #EFF7FD;
+        --muted: #EFF7FD;
+        --muted-foreground: #EFF7FD;
+        --popover: #EFF7FD;
+        --popover-foreground: #EFF7FD;
+        --accent: #EFF7FD;
+        --accent-foreground: #EFF7FD;
+        --destructive: #EFF7FD;
+        --destructive-foreground: #EFF7FD;
+
+        --radius: 4px;
+    }
+
+    .dark {
+        --primary: #0C3B64;
+        /*--primary-light: #FEF2F0;*/
+        /*--primary-dark: #F15342;*/
+        /*--secondary: #F15342;*/
+        /*--secondary-light: #CFE6F9;*/
+        /*--secondary-dark: #104E85;*/
+        /*!*--tertiary: #EFF7FD;*!*/
+        /*--success: #48A43F;*/
+        /*--success-light: #ECFDF3;*/
+        /*--success-dark: #067647;*/
+        /*--danger: #E0293B;*/
+        /*--warning: #FFB728;*/
+        /*--info: #1E88E5;*/
+        /*--info-light: #EFF7FD;*/
+
+        /*--dark: #151414;*/
+        /*--dark-secondary: #4D4D4F;*/
+        /*--dark-shade-1: #676769;*/
+        /*--dark-shade-2: #747476;*/
+        /*--dark-shade-3: #8D8D8F;*/
+        /*--gray: #EDEDED;*/
+        /*--gray-light: #DBDBDB;*/
+        /*--gray-shade3: #C8C8C8;*/
+        /*--gray-shade4: #B6B6B6;*/
+        /*--gray-shade5: #A4A4A4;*/
+
+        /*--background: #F8FAFF;*/
+        /*--background-shade-3: #F4F8FB;*/
+        /*!*--surface: #EFF7FD;*!*/
+
+        /*--link: #F04935;*/
+        /*--disabled: #EFF7FD;*/
+
+        /*--border: #D0D5DD;*/
+        /*--border-light: #EDEDED;*/
+        /*--ring: rgba(12, 59, 100, 0.09);*/
+        /*--ring-secondary: rgba(16, 24, 40, 0.05);*/
+        /*--ring-light: rgba(21, 108, 183, 0.16);*/
+        /*--ring-dark: rgba(16, 78, 133, 0.32);*/
+        /*--input: #EFF7FD;*/
+
+        /*--radius: 4px;*/
+    }
+}
+
+@layer base {
+    * {
+        @apply font-primary
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply bg-background relative overflow-x-hidden;
+    }
+
+    main {
+        @apply min-h-dvh overflow-x-hidden;
+    }
+
+    input {
+        @apply bg-transparent focus:outline-none;
+    }
+
+    a {
+        @apply cursor-pointer
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        background: rgb(154 164 178 / 15%);
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px white;
+        -webkit-box-shadow: inset 0 0 5px white;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #9AA4B2 !important;
+        -webkit-background: #9AA4B2 !important;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #F04935 !important;
+        -webkit-background: #F04935 !important;
+    }
+
+}
+
+@layer utilities {
+    .sub-heading {
+        @apply text-dark-secondary text-base lg:text-lg xl:text-xl
+    }
+
+    .primary-heading {
+        @apply text-dark text-2xl lg:text-3xl xl:text-[40px] xl:leading-[48px] font-bold
+    }
+
+    .default-select-option {
+        @apply h-10 w-full rounded-md border border-borderColor shadow-xs shadow-ring-secondary bg-white px-3 py-1.5 text-base outline-none
+        disabled:cursor-not-allowed disabled:opacity-30 appearance-none bg-[url("@/assets/imgs/icons/arrow-down-gray.png")] bg-no-repeat bg-[right_0.5rem_center]
+    }
+
+    .default-select-option {
+        @apply disabled:text-dark-shade3
+    }
+
+    /* Table */
+    .scrollable-table {
+        @apply overflow-x-scroll rounded-md
+    }
+
+    .scrollable-table .primary-table {
+        @apply overflow-visible
+    }
+
+    .primary-table {
+        @apply border border-borderColor-light border-t-transparent rounded-md overflow-hidden
+    }
+
+    .primary-table table {
+        @apply min-w-full bg-white
+    }
+
+    .primary-table table th,
+    .primary-table table td {
+        @apply border border-b-0 border-borderColor-light border-collapse first:border-l-0 last:border-r-0
+    }
+
+    .primary-table table th,
+    .primary-table table td {
+        @apply p-2
+    }
+
+    .primary-table table th {
+        @apply py-2.5 bg-dark-secondary text-white text-2xs md:text-xs font-normal uppercase
+    }
+
+    .primary-table table td {
+        @apply text-xs xl:text-sm text-dark-secondary
+    }
+
+    /*.secondary-table table {*/
+    /*  @apply min-w-full bg-white*/
+    /*}*/
+
+    /*.secondary-table table th {*/
+    /*  @apply p-2 text-borderColor-primary text-sm font-medium uppercase*/
+    /*}*/
+
+    /*.secondary-table table tr {*/
+    /*  @apply border-b last:border-b-0 border-borderColor*/
+    /*}*/
+
+    /*.secondary-table table td {*/
+    /*  @apply py-4 px-2 text-sm text-dark-secondary font-medium*/
+    /*}*/
+}
