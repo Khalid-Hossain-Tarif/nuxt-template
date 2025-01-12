@@ -1,10 +1,33 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import axios from "axios";
+
+const products = ref([])
+
+axios.get('https://api.escuelajs.co/api/v1/products')
+    .then(function (response) {
+      products.value = response.data;
+      console.log(products.value);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .finally(function () {
+      // always executed
+    });
+</script>
 
 <template>
   <div>
-    <p>Main content</p>
-    <Button variant="secondary">Click me</Button>
+    <div class="container py-10 px-10">
+      <div class="space-y-2">
+        <p>Main content</p>
+        <Button @click="" variant="secondary">Click me</Button>
+        <p>{{ $t('HOME') }}</p>
 
-    <p>{{ $t('HOME') }}</p>
+        <div v-for="product in products">
+          {{product.title}}
+        </div>
+      </div>
+    </div>
   </div>
 </template>
