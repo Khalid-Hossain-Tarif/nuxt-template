@@ -18,6 +18,7 @@ const localePath = useLocalePath()
             <li><NuxtLink :to="localePath('/')" class="text-dark-secondary hover:text-secondary">Home</NuxtLink></li>
             <li><NuxtLink :to="localePath('/about')" class="text-dark-secondary hover:text-secondary">About</NuxtLink></li>
             <li><NuxtLink :to="localePath('/contact')" class="text-dark-secondary hover:text-secondary">Contact</NuxtLink></li>
+            <li><NuxtLink :to="localePath('/custom-layout')" class="text-dark-secondary hover:text-secondary">Custom Layout</NuxtLink></li>
           </ul>
         </nav>
 
