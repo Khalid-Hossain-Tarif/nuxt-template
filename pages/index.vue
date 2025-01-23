@@ -23,6 +23,8 @@ axios.get('https://api.escuelajs.co/api/v1/products')
         <p>Main content</p>
         <Button @click="" variant="secondary">Click me</Button>
         <p>{{ $t('HOME') }}</p>
+        <IconsBell />
+        <img src="@/assets/img/nature.jpg" alt="">
 
         <div v-for="product in products">
           {{product.title}}

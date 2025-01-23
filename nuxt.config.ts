@@ -3,7 +3,9 @@ import { i18nConfig } from './i18n.config';
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-
+  alias: {
+    assets: "/<rootDir>/assets",
+  },
   app: {
     head: {
       titleTemplate: '%s Nuxt Template',
