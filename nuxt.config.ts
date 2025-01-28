@@ -23,7 +23,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/i18n', '@pinia/nuxt'],
 
   i18n: i18nConfig,
 

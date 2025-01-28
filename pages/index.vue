@@ -28,7 +28,7 @@
           >Click me</Button
         >
         <p>{{ $t("HOME") }}</p>
-        <IconsBell />
+        <IconsBell class="lg:w-10" />
         <img
           src="@/assets/img/nature.jpg"
           alt=""
