@@ -11,7 +11,7 @@
     .get("https://api.escuelajs.co/api/v1/products")
     .then(function (response) {
       products.value = response.data;
-      console.log(products.value);
+      // console.log(products.value);
     })
     .catch(function (error) {
       console.log(error);
