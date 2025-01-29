@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import axios from "axios";
-  import { useOptionStore } from "~/store/store-types/useOptionStore";
-  import { useSetupStore } from "~/store/store-types/useSetupStore";
+  import { useOptionStore } from "~/store/store-type/option.store";
+  import { useSetupStore } from "~/store/store-type/setup.store";
 
   const optionStore = useOptionStore();
   const setupStore = useSetupStore();
