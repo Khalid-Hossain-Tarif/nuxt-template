@@ -1,6 +1,10 @@
 <script setup lang="ts">
   import axios from "axios";
+  import { useOptionStore } from "~/store/store-types/useOptionStore";
+  import { useSetupStore } from "~/store/store-types/useSetupStore";
 
+  const optionStore = useOptionStore();
+  const setupStore = useSetupStore();
   const products = ref([]);
 
   axios
@@ -21,6 +25,24 @@
   <div>
     <div class="container py-10 px-10">
       <div class="space-y-2">
+        <div>
+          {{ optionStore.name }} - {{ optionStore.count }} -
+          {{ optionStore.doubleCount }} -
+          <Button
+            @click="optionStore.increment"
+            variant="secondary"
+            >+</Button
+          >
+        </div>
+        <div>
+          {{ setupStore.name }} - {{ setupStore.count }} -
+          {{ setupStore.doubleCount }} -
+          <Button
+            @click="setupStore.increment"
+            variant="danger"
+            >+</Button
+          >
+        </div>
         <p>Main content</p>
         <Button
           @click=""
