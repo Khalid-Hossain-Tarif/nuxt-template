@@ -44,9 +44,7 @@
             </div>
           </div>
 
-          <div v-else>
-            <NoResults />
-          </div>
+          <NoResults v-else />
         </div>
       </div>
     </div>

@@ -8,20 +8,17 @@ export const useProductStore = defineStore("product", {
   getters: {},
 
   actions: {
-    getAllProducts() {
-      axios
-        .get("https://api.escuelajs.co/api/v1/products")
-        .then((response) => {
-          this.products = response.data;
-          // console.log(this.products);
-          // return response;
-        })
-        .catch(function (error) {
-          console.log(error);
-        })
-        .finally(function () {
-          // always executed
-        });
+    async getAllProducts() {
+      try {
+        const response = await axios.get(
+          "https://api.escuelajs.co/api/v1/products"
+        );
+        this.products = response.data;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        // always executed
+      }
     },
   },
 });
