@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const useProductStore = defineStore("product", {
   state: () => ({
-    products: null,
+    products: [],
   }),
 
   getters: {},

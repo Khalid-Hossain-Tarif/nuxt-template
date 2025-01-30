@@ -3,6 +3,7 @@
   import { storeToRefs } from "pinia";
   import { useProductStore } from "~/store/product.store";
   import { displayPrice } from "~/utils/Helper";
+  import NoResults from "~/components/common/NoResults.vue";
 
   const store = useProductStore();
   const { products } = storeToRefs(store);
@@ -17,9 +18,11 @@
     <div class="container py-10">
       <div>
         <h1 class="mb-6 text-secondary text-2xl font-semibold">Product Page</h1>
-        <!--        {{ products[0] }}-->
         <div>
-          <div class="grid grid-cols-4 gap-4">
+          <div
+            v-if="products.length"
+            class="grid grid-cols-4 gap-4"
+          >
             <div
               v-for="product in products"
               :key="product.id"
@@ -28,6 +31,7 @@
               <img
                 :src="product.images[0]"
                 :alt="product.title"
+                class="rounded-t-lg"
               />
               <div class="p-4">
                 <h4 class="text-dark text-xl font-medium line-clamp-1">
@@ -38,6 +42,10 @@
                 </p>
               </div>
             </div>
+          </div>
+
+          <div v-else>
+            <NoResults />
           </div>
         </div>
       </div>
