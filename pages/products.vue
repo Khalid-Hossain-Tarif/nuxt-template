@@ -1,7 +1,8 @@
 <script setup lang="ts">
   import { onBeforeMount } from "vue";
-  import { useProductStore } from "~/store/product.store";
   import { storeToRefs } from "pinia";
+  import { useProductStore } from "~/store/product.store";
+  import { displayPrice } from "~/utils/Helper";
 
   const store = useProductStore();
   const { products } = storeToRefs(store);
@@ -29,10 +30,12 @@
                 :alt="product.title"
               />
               <div class="p-4">
-                <h4 class="text-dark text-xl font-medium">
+                <h4 class="text-dark text-xl font-medium line-clamp-1">
                   {{ product.title }}
                 </h4>
-                <p class="mt-1 text-dark-secondary">$ {{ product.price }}</p>
+                <p class="mt-1 text-dark-secondary">
+                  {{ displayPrice(product.price) }}
+                </p>
               </div>
             </div>
           </div>
