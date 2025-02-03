@@ -30,12 +30,19 @@
         <p class="my-1 text-dark-secondary">
           {{ displayPrice(product?.price) }}
         </p>
-        <p
-          class="flex items-center gap-x-1 py-1 px-2 rounded bg-secondary-light text-secondary text-xs font-medium absolute top-3 left-3"
-        >
-          <IconsTag class="lg:w-4" />
-          <span>{{ product?.category?.name }}</span>
-        </p>
+
+        <div class="flex items-center gap-x-1">
+          <IconsTag class="lg:w-5 text-secondary" />
+          <div class="flex items-center gap-x-1">
+            <Button
+              variant="link"
+              size="sm"
+              class="p-0 text-secondary hover:text-primary"
+            >
+              {{ product?.category?.name }}
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
