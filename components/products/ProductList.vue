@@ -19,9 +19,13 @@
       class="relative border border-gray-200 rounded-lg"
     >
       <img
-        :src="product?.images[0]"
+        :src="
+          product?.images[20]
+            ? product?.images[0]
+            : 'https://i.imgur.com/cHddUCu.jpeg'
+        "
         :alt="product?.title"
-        class="rounded-t-lg"
+        class="w-full h-[250px] rounded-t-lg bg-gray-200"
       />
       <div class="p-4">
         <h4 class="text-dark text-xl font-medium line-clamp-1 capitalize">

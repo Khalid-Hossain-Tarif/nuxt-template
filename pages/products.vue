@@ -4,6 +4,7 @@
   import { useProductStore } from "~/store/product.store";
   import NoResults from "~/components/common/NoResults.vue";
   import ProductList from "~/components/products/ProductList.vue";
+  import ProductFilter from "~/components/products/ProductFilter.vue";
 
   const store = useProductStore();
   const { products } = storeToRefs(store);
@@ -16,10 +17,13 @@
 <template>
   <div>
     <div class="container py-10">
-      <div>
-        <h1 class="mb-6 text-secondary text-2xl font-semibold">
+      <div class="space-y-6">
+        <h1 class="text-secondary text-2xl font-semibold">
           {{ $t("BrowseAllProducts") }}
         </h1>
+
+        <ProductFilter />
+
         <div>
           <ProductList
             v-if="products.length"
