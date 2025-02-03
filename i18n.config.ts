@@ -23,6 +23,20 @@ export const i18nConfig = {
     {
       code: "en",
       name: "English",
+      file: "products/en.json",
+      iso: "en-US",
+      dir: "ltr",
+    },
+    {
+      code: "bn",
+      name: "বাংলা",
+      file: "products/bn.json",
+      iso: "bn-BD",
+      dir: "rtl",
+    },
+    {
+      code: "en",
+      name: "English",
       file: "about/en.json",
       iso: "en-US",
       dir: "ltr",
