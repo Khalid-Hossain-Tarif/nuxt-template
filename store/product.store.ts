@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useLoaderStore } from "~/store/loader.store";
+import { defineStore } from "pinia";
 
 export const useProductStore = defineStore("product", {
   state: () => ({
@@ -11,8 +12,8 @@ export const useProductStore = defineStore("product", {
   actions: {
     async getAllProducts() {
       const loading = useLoaderStore();
+      loading.startLoading();
       try {
-        loading.true();
         const response = await axios.get(
           "https://api.escuelajs.co/api/v1/products"
         );
@@ -21,7 +22,7 @@ export const useProductStore = defineStore("product", {
         console.log(error);
       } finally {
         // always executed
-        loading.false();
+        loading.stopLoading();
       }
     },
   },
