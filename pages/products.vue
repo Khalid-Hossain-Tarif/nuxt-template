@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onBeforeMount } from "vue";
+  import { ref, reactive, onBeforeMount } from "vue";
   import { storeToRefs } from "pinia";
   import { useProductStore } from "~/store/product.store";
   import NoResults from "~/components/common/NoResults.vue";
@@ -8,6 +8,11 @@
 
   const store = useProductStore();
   const { products } = storeToRefs(store);
+  const filter = reactive({
+    title: null,
+    category: null,
+    sortBy: null,
+  });
 
   onBeforeMount(() => {
     store.getAllProducts();
@@ -22,7 +27,7 @@
           {{ $t("BrowseAllProducts") }}
         </h1>
 
-        <ProductFilter />
+        <ProductFilter :filter="filter" />
 
         <div>
           <ProductList

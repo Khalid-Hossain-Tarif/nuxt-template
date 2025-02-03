@@ -8,18 +8,22 @@
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select";
+
+  const props = defineProps(["filter"]);
 </script>
 
 <template>
   <div class="grid grid-cols-3 gap-x-3">
+    -> {{ props.filter.sortBy }}
     <Input
+      v-model="props.filter.title"
       type="text"
-      placeholder="Search by name"
+      placeholder="Search by product title"
     />
 
-    <Select>
+    <Select v-model="props.filter.category">
       <SelectTrigger>
-        <SelectValue placeholder="Sort by category" />
+        <SelectValue placeholder="Filter by category" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
@@ -35,7 +39,7 @@
       </SelectContent>
     </Select>
 
-    <Select>
+    <Select v-model="props.filter.sortBy">
       <SelectTrigger>
         <SelectValue placeholder="Sort by latest" />
       </SelectTrigger>
