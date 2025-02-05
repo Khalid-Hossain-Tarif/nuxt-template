@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { displayPrice } from "~/utils/Helper";
+  import { currency, formatDate } from "~/utils/Helper";
   import IconsTag from "~/components/icons/Tag.vue";
 
   const props = defineProps<{
@@ -32,7 +32,7 @@
           {{ product?.title }}
         </h4>
         <p class="my-1 text-dark-secondary">
-          {{ displayPrice(product?.price) }}
+          {{ currency }} {{ product?.price }}
         </p>
 
         <div class="flex items-center gap-x-1">
@@ -41,9 +41,9 @@
             <Button
               variant="link"
               size="sm"
-              class="p-0 text-secondary hover:text-primary"
+              class="p-0 text-secondary hover:text-primary capitalize"
             >
-              {{ product?.category?.name }}
+              {{ product?.category?.name.toLowerCase() }}
             </Button>
           </div>
         </div>

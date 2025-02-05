@@ -1,7 +1,8 @@
 <script setup lang="ts">
-  import { ref, reactive, onBeforeMount } from "vue";
+  import { reactive, onBeforeMount } from "vue";
   import { storeToRefs } from "pinia";
   import { useProductStore } from "~/store/product.store";
+  import { sortingOptions } from "~/constants/common.constant";
   import NoResults from "~/components/common/NoResults.vue";
   import ProductList from "~/components/products/ProductList.vue";
   import ProductFilter from "~/components/products/ProductFilter.vue";
@@ -9,13 +10,40 @@
   const store = useProductStore();
   const { products } = storeToRefs(store);
   const filter = reactive({
-    title: null,
+    title: "",
     category: null,
     sortBy: null,
   });
 
   onBeforeMount(() => {
     store.getAllProducts();
+  });
+
+  const filteredProductsHandler = (
+    products: any,
+    title: string,
+    // category: any,
+    sortBy: any
+  ) => {
+    let filteredProduct = [...products];
+
+    if (title) {
+      filteredProduct = filteredProduct.filter((product: any) =>
+        product?.title.toLowerCase().trim().includes(title.toLowerCase())
+      );
+    }
+
+    if (sortBy === "Sort by price: low to high") {
+      filteredProduct.sort((a, b) => a.price - b.price);
+    } else if (sortBy === "Sort by price: high to low") {
+      filteredProduct.sort((a, b) => b.price - a.price);
+    }
+
+    return filteredProduct;
+  };
+
+  const filteredProductsList = computed(() => {
+    return filteredProductsHandler(products.value, filter.title, filter.sortBy);
   });
 </script>
 
@@ -27,12 +55,15 @@
           {{ $t("BrowseAllProducts") }}
         </h1>
 
-        <ProductFilter :filter="filter" />
+        <ProductFilter
+          :filter="filter"
+          :sortingOptions="sortingOptions"
+        />
 
         <div>
           <ProductList
-            v-if="products.length"
-            :products="products"
+            v-if="filteredProductsList.length"
+            :products="filteredProductsList"
           />
           <NoResults v-else />
         </div>

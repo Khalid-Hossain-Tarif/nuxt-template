@@ -8,13 +8,13 @@
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select";
+  import { sortingOptions } from "~/constants/common.constant";
 
-  const props = defineProps(["filter"]);
+  const props = defineProps(["filter", "sortingOptions"]);
 </script>
 
 <template>
   <div class="grid grid-cols-3 gap-x-3">
-    -> {{ props.filter.sortBy }}
     <Input
       v-model="props.filter.title"
       type="text"
@@ -38,18 +38,18 @@
         </SelectGroup>
       </SelectContent>
     </Select>
-
     <Select v-model="props.filter.sortBy">
       <SelectTrigger>
         <SelectValue placeholder="Sort by latest" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="popularity"> Sort by popularity </SelectItem>
-          <SelectItem value="latest"> Sort by latest </SelectItem>
-          <SelectItem value="lowToHigh">Sort by price: low to high</SelectItem>
-          <SelectItem value="highToLow">
-            Sort by price: high to low
+          <SelectItem
+            v-for="option in sortingOptions"
+            :key="option.code"
+            :value="option.name"
+          >
+            {{ option.name }}
           </SelectItem>
         </SelectGroup>
       </SelectContent>
