@@ -1,6 +1,7 @@
 <script setup lang="ts">
-  import { currency, formatDate } from "~/utils/Helper";
+  import { currency } from "~/utils/Helper";
   import IconsTag from "~/components/icons/Tag.vue";
+  import moment from "moment";
 
   const props = defineProps<{
     products: {
@@ -33,6 +34,7 @@
         </h4>
         <p class="my-1 text-dark-secondary">
           {{ currency }} {{ product?.price }}
+          <!--{{ moment(product?.creationAt).fromNow() }}-->
         </p>
 
         <div class="flex items-center gap-x-1">

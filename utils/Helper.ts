@@ -7,7 +7,7 @@ export const currency = "$";
 //   return `${currency} ${Number(price).toFixed(2)}`;
 // };
 
-export const formatDate = (dateStr: string) => {
-  const [day, month, year] = dateStr.split("-");
-  return new Date(`${year}-${month}-${day}`);
-};
+// export const formatDate = (dateStr: string) => {
+//   const [day, month, year] = dateStr.split("-");
+//   return new Date(`${year}-${month}-${day}`);
+// };

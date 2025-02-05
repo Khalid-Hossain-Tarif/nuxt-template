@@ -38,6 +38,7 @@
         </SelectGroup>
       </SelectContent>
     </Select>
+
     <Select v-model="props.filter.sortBy">
       <SelectTrigger>
         <SelectValue placeholder="Sort by latest" />
