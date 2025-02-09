@@ -28,6 +28,12 @@ export default defineNuxtConfig({
 
   i18n: i18nConfig,
 
+  runtimeConfig: {
+    public: {
+      apiBaseUrl: process.env.VITE_API_BASE_URL,
+    }
+  },
+
   // Defaults options
   tailwindcss: {
     cssPath: ['~/assets/css/tailwind.css', { injectPosition: "last" }],

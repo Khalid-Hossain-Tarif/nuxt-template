@@ -11,11 +11,12 @@ export const useProductStore = defineStore("product", {
 
   actions: {
     async getAllProducts() {
+      const config = useRuntimeConfig();
       const loading = useLoaderStore();
       loading.startLoading();
       try {
         const response = await axios.get(
-          "https://api.escuelajs.co/api/v1/products"
+          config.public.apiBaseUrl + "/products"
         );
         this.products = response.data;
       } catch (error) {
