@@ -38,12 +38,12 @@
         </p>
 
         <div class="flex items-center gap-x-1">
-          <IconsTag class="lg:w-5 text-secondary" />
+          <IconsTag class="lg:w-5 text-gray-shade5" />
           <div class="flex items-center gap-x-1">
             <Button
               variant="link"
               size="sm"
-              class="p-0 text-secondary hover:text-primary capitalize"
+              class="p-0 text-gray-shade5 hover:text-primary capitalize"
             >
               {{ product?.category?.name.toLowerCase() }}
             </Button>

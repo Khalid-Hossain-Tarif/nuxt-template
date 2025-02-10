@@ -7,6 +7,14 @@
   import NoResults from "~/components/common/NoResults.vue";
   import ProductList from "~/components/products/ProductList.vue";
   import ProductFilter from "~/components/products/ProductFilter.vue";
+  import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "~/components/ui/select";
 
   const productStore = useProductStore();
   const categoryStore = useCategoryStore();
@@ -15,7 +23,7 @@
   const filter = reactive({
     title: "",
     selectedCategory: [],
-    sortBy: "Sort by latest",
+    sortBy: "",
   });
 
   onBeforeMount(() => {
@@ -34,7 +42,7 @@
     //sortByTitle
     if (title) {
       filteredProduct = filteredProduct.filter((product: any) =>
-        product?.title.toLowerCase().trim().includes(title.toLowerCase())
+        product?.title.toLowerCase().trim().includes(title.toLowerCase().trim())
       );
     }
 
@@ -46,7 +54,7 @@
     }
 
     //sortBy
-    if (sortBy === "Sort by latest") {
+    if (sortBy === "" || sortBy === "Default" || sortBy === "Sort by latest") {
       filteredProduct.sort((a, b) => {
         return Date.parse(b.creationAt) - Date.parse(a.creationAt);
       });
@@ -73,16 +81,37 @@
   <div>
     <div class="container py-10">
       <div class="space-y-6">
-        <h1 class="text-secondary text-2xl font-semibold">
-          {{ $t("BrowseAllProducts") }}
-        </h1>
+        <div class="flex justify-between items-center gap-2">
+          <h1 class="text-secondary text-2xl font-semibold shrink-0">
+            {{ $t("BrowseAllProducts") }}
+          </h1>
 
-        <div class="flex gap-6">
+          <div class="md:w-[250px]">
+            <Select v-model="filter.sortBy">
+              <SelectTrigger>
+                <SelectValue placeholder="Default" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem
+                    v-for="option in sortingOptions"
+                    :key="option.code"
+                    :value="option.name"
+                  >
+                    {{ option.name }}
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div class="flex gap-8">
           <ProductFilter
             :filter="filter"
             :sortingOptions="sortingOptions"
             :categories="categories"
-            class="w-[30%] shrink-0"
+            class="w-[25%] shrink-0"
           />
 
           <div class="grow">
