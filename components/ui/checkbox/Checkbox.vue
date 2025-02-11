@@ -15,7 +15,6 @@ const delegatedProps = computed(() => {
 })
 
 const forwarded = useForwardPropsEmits(delegatedProps, emits)
-const model = defineModel();
 </script>
 
 <template>

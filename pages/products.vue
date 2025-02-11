@@ -85,7 +85,6 @@
           <h1 class="text-secondary text-2xl font-semibold shrink-0">
             {{ $t("BrowseAllProducts") }}
           </h1>
-
           <div class="md:w-[250px]">
             <Select v-model="filter.sortBy">
               <SelectTrigger>
