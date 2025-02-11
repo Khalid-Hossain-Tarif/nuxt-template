@@ -41,7 +41,7 @@
           >
         </h4>
         <p class="my-1 text-dark-secondary">
-          {{ currency }} {{ product?.price }}
+          {{ currency }}{{ product?.price }}
           <!--{{ moment(product?.creationAt).fromNow() }}-->
         </p>
 
