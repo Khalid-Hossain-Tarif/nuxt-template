@@ -22,7 +22,6 @@ export const useProductStore = defineStore("product", {
       } catch (error) {
         console.log(error);
       } finally {
-        // always executed
         loading.stopLoading();
       }
     },

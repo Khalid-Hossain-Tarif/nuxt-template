@@ -17,20 +17,28 @@
     <div
       v-for="product in products"
       :key="product?.id"
-      class="relative border border-gray-200 rounded-lg"
+      class="relative overflow-hidden border border-gray-200 rounded-lg"
     >
-      <img
-        :src="
-          product?.images[20]
-            ? product?.images[0]
-            : 'https://i.imgur.com/cHddUCu.jpeg'
-        "
-        :alt="product?.title"
-        class="w-full h-[250px] rounded-t-lg bg-gray-200"
-      />
+      <nuxt-link
+        :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/\s+/g, '-')}`"
+      >
+        <img
+          :src="
+            product?.images[20]
+              ? product?.images[0]
+              : 'https://i.imgur.com/cHddUCu.jpeg'
+          "
+          :alt="product?.title"
+          class="w-full h-[250px] rounded-t-lg bg-gray-200 hover:scale-105 transition-transform"
+        />
+      </nuxt-link>
       <div class="p-4">
-        <h4 class="text-dark text-xl font-medium line-clamp-1 capitalize">
-          {{ product?.title }}
+        <h4 class="text-xl line-clamp-1 capitalize">
+          <nuxt-link
+            :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/\s+/g, '-')}`"
+            class="text-dark hover:text-primary font-medium transition-colors"
+            >{{ product?.title }}</nuxt-link
+          >
         </h4>
         <p class="my-1 text-dark-secondary">
           {{ currency }} {{ product?.price }}
