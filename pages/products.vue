@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { reactive, onBeforeMount } from "vue";
+  import { computed, ref, reactive, onBeforeMount } from "vue";
   import { storeToRefs } from "pinia";
   import { useProductStore } from "~/store/product.store";
   import { useCategoryStore } from "~/store/category.store";
@@ -7,6 +7,7 @@
   import NoResults from "~/components/common/NoResults.vue";
   import ProductList from "~/components/products/ProductList.vue";
   import ProductFilter from "~/components/products/ProductFilter.vue";
+  import Pagination from "~/components/common/Pagination.vue";
   import {
     Select,
     SelectContent,
@@ -75,6 +76,15 @@
       filter.sortBy
     );
   });
+
+  const currentPage = ref(1);
+  const itemsPerPage = 9;
+
+  const paginatedProducts = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    return filteredProductsList.value.slice(start, end);
+  });
 </script>
 
 <template>
@@ -115,10 +125,20 @@
 
           <div class="grow">
             <ProductList
-              v-if="filteredProductsList.length"
-              :products="filteredProductsList"
+              v-if="paginatedProducts.length"
+              :products="paginatedProducts"
             />
             <NoResults v-else />
+            currentPage: {{ currentPage }} - total:
+            {{ filteredProductsList.length }}
+            <Pagination
+              v-if="filteredProductsList.length > itemsPerPage"
+              :totalItems="filteredProductsList.length"
+              :itemsPerPage="itemsPerPage"
+              :currentPage="currentPage"
+              @update:currentPage="currentPage = $event"
+              class="mt-8"
+            />
           </div>
         </div>
       </div>
