@@ -85,6 +85,10 @@
     const end = start + itemsPerPage;
     return filteredProductsList.value.slice(start, end);
   });
+  const changePage = (page: number) => {
+    currentPage.value = page;
+    console.log("currentPage: ", currentPage.value);
+  };
 </script>
 
 <template>
@@ -129,14 +133,12 @@
               :products="paginatedProducts"
             />
             <NoResults v-else />
-            currentPage: {{ currentPage }} - total:
-            {{ filteredProductsList.length }}
+
             <Pagination
-              v-if="filteredProductsList.length > itemsPerPage"
               :totalItems="filteredProductsList.length"
               :itemsPerPage="itemsPerPage"
               :currentPage="currentPage"
-              @update:currentPage="currentPage = $event"
+              @changePage="changePage"
               class="mt-8"
             />
           </div>
