@@ -53,6 +53,13 @@
                 >Custom Layout</NuxtLink
               >
             </li>
+            <li>
+              <NuxtLink
+                :to="localePath('/user/login')"
+                class="text-dark-secondary hover:text-secondary"
+                >Login</NuxtLink
+              >
+            </li>
           </ul>
         </nav>
 

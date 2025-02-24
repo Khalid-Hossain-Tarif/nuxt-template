@@ -5,7 +5,9 @@ export const useLoaderStore = defineStore("loader", {
     isLoading: false,
   }),
 
-  getters: {},
+  getters: {
+    getIsLoading: (state) => state.isLoading,
+  },
 
   actions: {
     startLoading() {

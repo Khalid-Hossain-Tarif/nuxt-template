@@ -12,7 +12,7 @@
         <div class="inner-circle"></div>
       </div>
       <div class="progress">
-        {{ progress }}<span style="font-size: 12px">%</span>
+        {{ progress.toFixed(2) }}<span style="font-size: 12px">%</span>
       </div>
     </div>
   </div>
