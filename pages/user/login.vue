@@ -12,7 +12,8 @@
   const doLogin = async () => {
     await authStore.setLogin(loginData);
     if (authStore.isAuthenticated) {
-      await navigateTo("/");
+      await authStore.getUserProfile();
+      await navigateTo("/dashboard");
     }
   };
 </script>

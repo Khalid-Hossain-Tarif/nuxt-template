@@ -8,6 +8,7 @@ export const useAuthStore = defineStore("auth", {
     token: "",
     refreshToken: "",
     users: {},
+    user: {},
   }),
 
   getters: {},
@@ -61,6 +62,26 @@ export const useAuthStore = defineStore("auth", {
       this.token = "";
       this.refreshToken = "";
       this.users = {};
+    },
+
+    async getUserProfile() {
+      const config = useRuntimeConfig();
+      const loading = useLoaderStore();
+      loading.startLoading();
+      try {
+        const response = await axios.get(
+          config.public.apiBaseUrl + "/auth/profile",
+          {
+            headers: { Authorization: `Bearer ${this.token}` },
+          }
+        );
+        this.user = response.data;
+      } catch (error) {
+        console.log(error);
+      } finally {
+        loading.stopLoading();
+        console.log("user profile data: ", this.user);
+      }
     },
   },
 });
