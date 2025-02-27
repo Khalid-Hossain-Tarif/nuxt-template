@@ -6,7 +6,8 @@ export const useAuthStore = defineStore("auth", {
   state: () => ({
     isAuthenticated: false,
     token: "",
-    user: {},
+    refreshToken: "",
+    users: {},
   }),
 
   getters: {},
@@ -27,6 +28,31 @@ export const useAuthStore = defineStore("auth", {
         console.log("Error creating new user:", error);
       } finally {
         loading.stopLoading();
+      }
+    },
+
+    async setLogin(loginData: any) {
+      const config = useRuntimeConfig();
+      const loading = useLoaderStore();
+      loading.startLoading();
+      try {
+        const response = await axios.post(
+          config.public.apiBaseUrl + "/auth/login",
+          {
+            email: loginData.email,
+            password: loginData.password,
+          }
+        );
+        this.token = response.data.access_token;
+        this.refreshToken = response.data.refresh_token;
+        this.isAuthenticated = true;
+      } catch (error) {
+        console.log("Error when login:", error);
+      } finally {
+        loading.stopLoading();
+        // console.log("login successful.", this.isAuthenticated);
+        // console.log("token: ", this.token);
+        // console.log("refreshToken: ", this.refreshToken);
       }
     },
   },
