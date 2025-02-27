@@ -55,5 +55,12 @@ export const useAuthStore = defineStore("auth", {
         // console.log("refreshToken: ", this.refreshToken);
       }
     },
+
+    async logout() {
+      this.isAuthenticated = false;
+      this.token = "";
+      this.refreshToken = "";
+      this.users = {};
+    },
   },
 });

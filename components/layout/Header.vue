@@ -1,8 +1,15 @@
 <script setup lang="ts">
   import ColorModeSwitcher from "~/components/app/ColorModeSwitcher.vue";
   import LanguageSwitcher from "~/components/app/LanguageSwitcher.vue";
+  import { useAuthStore } from "~/store/auth.store";
 
   const localePath = useLocalePath();
+  const store = useAuthStore();
+
+  const doLogout = async () => {
+    await store.logout();
+    await navigateTo("/user/login");
+  };
 </script>
 
 <template>
@@ -59,6 +66,14 @@
                 class="text-dark-secondary hover:text-secondary"
                 >Login</NuxtLink
               >
+            </li>
+            <li v-if="store.isAuthenticated">
+              <button
+                @click="doLogout"
+                class="text-dark-secondary hover:text-secondary"
+              >
+                Logout
+              </button>
             </li>
           </ul>
         </nav>
