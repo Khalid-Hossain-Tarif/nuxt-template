@@ -83,7 +83,7 @@
                   <img
                     :src="authStore?.user?.avatar"
                     :alt="authStore?.user?.name"
-                    class="size-12 p-0.5 border border-borderColor-secondary rounded-full object-cover cursor-pointer"
+                    class="size-12 p-0.5 border border-secondary-light rounded-full object-cover cursor-pointer"
                   />
                 </PopoverTrigger>
                 <PopoverContent class="max-w-80">
@@ -91,7 +91,7 @@
                     <h4
                       class="pb-2 mb-2 border-b border-borderColor-light text-secondary text-xl font-semibold"
                     >
-                      {{ authStore?.user?.name }}
+                      My Account
                     </h4>
                     <div class="space-y-2">
                       <NuxtLink
