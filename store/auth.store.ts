@@ -80,7 +80,6 @@ export const useAuthStore = defineStore("auth", {
         console.log(error);
       } finally {
         loading.stopLoading();
-        // console.log("user profile data: ", this.user);
       }
     },
 
@@ -89,17 +88,11 @@ export const useAuthStore = defineStore("auth", {
       const loading = useLoaderStore();
       loading.startLoading();
       try {
-        await axios.put(
-          config.public.apiBaseUrl + `/users/${id}`,
-          {
-            name: userData.name,
-            email: userData.email,
-            password: userData.password,
-          },
-          {
-            headers: { Authorization: `Bearer ${this.token}` },
-          }
-        );
+        await axios.put(config.public.apiBaseUrl + `/users/${id}`, {
+          name: userData.name,
+          email: userData.email,
+          password: userData.password,
+        });
       } catch (error) {
         console.log("Error when login:", error);
       } finally {

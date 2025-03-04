@@ -11,18 +11,15 @@
   });
 
   const updateUserHandler = () => {
-    if (authStore.isAuthenticated && authStore.token) {
+    if (authStore.isAuthenticated) {
       authStore.updateUser(userData, authStore?.user?.id);
-      console.log("Token being sent:", authStore.token);
     }
-    console.log("updateUserHandler: ", userData);
   };
 </script>
 
 <template>
   <div class="py-12">
     <div class="container">
-      {{ userData }}
       <div class="flex gap-10">
         <div class="shrink-0 w-1/4">
           <img
