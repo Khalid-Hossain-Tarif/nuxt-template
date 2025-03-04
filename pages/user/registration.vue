@@ -30,9 +30,10 @@
     user.avatar = "";
   };
 
-  const submitCreateUser = () => {
-    authStore.createUser(user);
+  const submitCreateUser = async () => {
+    await authStore.createUser(user);
     clearStateData();
+    navigateTo("/user/login");
   };
 </script>
 
@@ -44,10 +45,7 @@
           User registration
         </h1>
 
-        <form
-          @submit.prevent="submitCreateUser"
-          class="space-y-3"
-        >
+        <div class="space-y-3">
           <div>
             <Label class="mb-1.5">Name</Label>
             <Input
@@ -82,7 +80,7 @@
 
           <div>
             <Button
-              type="submit"
+              @click="submitCreateUser"
               variant="secondary"
               size="sm"
               >Registration</Button
@@ -97,7 +95,7 @@
               >Login here</nuxt-link
             >
           </div>
-        </form>
+        </div>
       </div>
     </div>
   </div>

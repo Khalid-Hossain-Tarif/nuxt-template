@@ -2,29 +2,47 @@ import axios from "axios";
 import { useLoaderStore } from "~/store/loader.store";
 import { defineStore } from "pinia";
 
+interface User {
+  name: string;
+  email: string;
+  password: string;
+  avatar: string;
+}
+
+interface LoginData {
+  email: string;
+  password: string;
+}
+
+interface AuthState {
+  isAuthenticated: boolean;
+  token: string;
+  refreshToken: string;
+  users: Record<string, any>;
+  //Record<K, V> is a TypeScript utility type that creates an object type where:
+  // K (the first parameter) represents the key type.
+  // V (the second parameter) represents the value type.
+  user: User | null;
+}
+
 export const useAuthStore = defineStore("auth", {
-  state: () => ({
+  state: (): AuthState => ({
     isAuthenticated: false,
     token: "",
     refreshToken: "",
     users: {},
-    user: {},
+    user: null,
   }),
 
   getters: {},
 
   actions: {
-    async createUser(user: any) {
+    async createUser(user: User) {
       const config = useRuntimeConfig();
       const loading = useLoaderStore();
       loading.startLoading();
       try {
-        await axios.post(config.public.apiBaseUrl + "/users", {
-          name: user.name,
-          email: user.email,
-          password: user.password,
-          avatar: user.avatar,
-        });
+        await axios.post(`${config.public.apiBaseUrl}/users`, user);
       } catch (error) {
         console.log("Error creating new user:", error);
       } finally {
@@ -32,17 +50,14 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
-    async setLogin(loginData: any) {
+    async setLogin(loginData: LoginData) {
       const config = useRuntimeConfig();
       const loading = useLoaderStore();
       loading.startLoading();
       try {
         const response = await axios.post(
           config.public.apiBaseUrl + "/auth/login",
-          {
-            email: loginData.email,
-            password: loginData.password,
-          }
+          loginData
         );
         this.token = response.data.access_token;
         this.refreshToken = response.data.refresh_token;
@@ -83,16 +98,22 @@ export const useAuthStore = defineStore("auth", {
       }
     },
 
-    async updateUser(userData: any, id: any) {
+    async updateUser(userData: Partial<User>, id: number) {
+      //Partial<T> utility type: in TypeScript makes all properties of T optional. (Ex: role?: string; name?: string;)
+      //In the updateUser function, might only update certain fields (e.g., just name or email), so making all properties optional allows flexibility
       const config = useRuntimeConfig();
       const loading = useLoaderStore();
       loading.startLoading();
       try {
-        await axios.put(config.public.apiBaseUrl + `/users/${id}`, {
-          name: userData.name,
-          email: userData.email,
-          password: userData.password,
-        });
+        const response = await axios.put(
+          config.public.apiBaseUrl + `/users/${id}`,
+          {
+            name: userData.name,
+            email: userData.email,
+            password: userData.password,
+          }
+        );
+        this.user = response.data;
       } catch (error) {
         console.log("Error when login:", error);
       } finally {
