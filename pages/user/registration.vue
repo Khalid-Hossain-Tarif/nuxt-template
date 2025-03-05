@@ -1,6 +1,7 @@
 <script lang="ts" setup>
   import { reactive } from "vue";
   import { useAuthStore } from "~/store/auth.store";
+  import { navigateTo } from "#app";
 
   const authStore = useAuthStore();
 
@@ -31,9 +32,17 @@
   };
 
   const submitCreateUser = async () => {
-    await authStore.createUser(user);
-    clearStateData();
-    navigateTo("/user/login");
+    await authStore.verifyRegisteredEmail(user.email);
+    if (authStore.isEmailExist) {
+      return;
+    }
+
+    const isUserCreated = await authStore.createUser(user);
+
+    if (isUserCreated) {
+      clearStateData();
+      await navigateTo("/user/login");
+    }
   };
 </script>
 

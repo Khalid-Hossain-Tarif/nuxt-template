@@ -23,6 +23,7 @@ interface AuthState {
   // K (the first parameter) represents the key type.
   // V (the second parameter) represents the value type.
   user: User | null;
+  isEmailExist: any;
 }
 
 export const useAuthStore = defineStore("auth", {
@@ -32,19 +33,41 @@ export const useAuthStore = defineStore("auth", {
     refreshToken: "",
     users: {},
     user: null,
+    isEmailExist: false,
   }),
 
   getters: {},
 
   actions: {
+    async verifyRegisteredEmail(email: string) {
+      const config = useRuntimeConfig();
+      const loading = useLoaderStore();
+      loading.startLoading();
+      try {
+        const response = await axios.post(
+          `${config.public.apiBaseUrl}/users/is-available`,
+          {
+            email,
+          }
+        );
+        this.isEmailExist = response.data.isAvailable;
+      } catch (error) {
+        console.log("Error in email verification:", error);
+      } finally {
+        loading.stopLoading();
+      }
+    },
+
     async createUser(user: User) {
       const config = useRuntimeConfig();
       const loading = useLoaderStore();
       loading.startLoading();
       try {
         await axios.post(`${config.public.apiBaseUrl}/users`, user);
+        return true;
       } catch (error) {
         console.log("Error creating new user:", error);
+        return false;
       } finally {
         loading.stopLoading();
       }
