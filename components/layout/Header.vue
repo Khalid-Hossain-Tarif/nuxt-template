@@ -19,7 +19,6 @@
 </script>
 
 <template>
-  {{}}
   <header class="bg-background-shade3 border-b border-borderColor-secondary">
     <div class="container py-5">
       <div class="flex items-center justify-between gap-x-4">

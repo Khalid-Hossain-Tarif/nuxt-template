@@ -1,6 +1,11 @@
 <script lang="ts" setup>
   import { useAuthStore } from "~/store/auth.store";
   import { reactive } from "vue";
+  import { definePageMeta } from "#imports";
+
+  definePageMeta({
+    middleware: "auth",
+  });
 
   const authStore = useAuthStore();
 
