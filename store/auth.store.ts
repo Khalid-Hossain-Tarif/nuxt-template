@@ -18,7 +18,7 @@ interface AuthState {
   isAuthenticated: boolean;
   token: string;
   refreshToken: string;
-  users: Record<string, any>;
+  // users: Record<string, any>;
   //Record<K, V> is a TypeScript utility type that creates an object type where:
   // K (the first parameter) represents the key type.
   // V (the second parameter) represents the value type.
@@ -31,7 +31,7 @@ export const useAuthStore = defineStore("auth", {
     isAuthenticated: false,
     token: "",
     refreshToken: "",
-    users: {},
+    // users: {},
     user: null,
     isEmailExist: false,
   }),
@@ -99,7 +99,7 @@ export const useAuthStore = defineStore("auth", {
       this.isAuthenticated = false;
       this.token = "";
       this.refreshToken = "";
-      this.users = {};
+      this.user = null;
     },
 
     async getUserProfile() {
