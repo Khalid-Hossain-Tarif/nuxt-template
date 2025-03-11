@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { useLoaderStore } from "~/store/loader.store";
 import { defineStore } from "pinia";
 
@@ -85,6 +86,11 @@ export const useAuthStore = defineStore("auth", {
         this.token = response.data.access_token;
         this.refreshToken = response.data.refresh_token;
         this.isAuthenticated = true;
+
+        Cookies.set("authToken", this.token, {
+          expires: 5,
+          // sameSite: "Strict",
+        });
       } catch (error) {
         console.log("Error when login:", error);
       } finally {
@@ -100,6 +106,7 @@ export const useAuthStore = defineStore("auth", {
       this.token = "";
       this.refreshToken = "";
       this.user = null;
+      Cookies.remove("name");
     },
 
     async getUserProfile() {
@@ -107,6 +114,12 @@ export const useAuthStore = defineStore("auth", {
       const loading = useLoaderStore();
       loading.startLoading();
       try {
+        const token = Cookies.get("authToken");
+        if (!token) {
+          console.log("No auth token found, user not authenticated!");
+          return;
+        }
+
         const response = await axios.get(
           config.public.apiBaseUrl + "/auth/profile",
           {
