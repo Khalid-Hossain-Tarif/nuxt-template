@@ -85,9 +85,9 @@
     const end = start + itemsPerPage;
     return filteredProductsList.value.slice(start, end);
   });
+
   const changePage = (page: number) => {
     currentPage.value = page;
-    console.log("currentPage: ", currentPage.value);
   };
 </script>
 

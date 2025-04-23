@@ -187,7 +187,7 @@
     }
 
     .primary-heading {
-        @apply text-dark text-2xl lg:text-3xl xl:text-[40px] xl:leading-[48px] font-bold
+        @apply text-dark text-xl lg:text-3xl font-bold
     }
 
     .default-select-option {

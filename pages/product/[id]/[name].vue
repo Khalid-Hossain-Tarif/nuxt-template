@@ -43,7 +43,7 @@
           <p class="text-sm">
             <span class="font-medium text-dark">Category: </span>
             <nuxt-link
-              to=""
+              :to="`/category/${singleProduct?.category?.id}/${singleProduct?.category?.name.toLowerCase().replace(/[\s/]+/g, '-')}`"
               class="text-dark-secondary hover:text-primary underline capitalize"
               >{{ singleProduct?.category?.name.toLowerCase() }}</nuxt-link
             >

@@ -20,7 +20,7 @@
       class="relative overflow-hidden border border-gray-200 rounded-lg"
     >
       <nuxt-link
-        :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/\s+/g, '-')}`"
+        :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/[\s/]+/g, '-')}`"
       >
         <img
           :src="
@@ -35,7 +35,7 @@
       <div class="p-4">
         <h4 class="text-xl line-clamp-1 capitalize">
           <nuxt-link
-            :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/\s+/g, '-')}`"
+            :to="`/product/${product?.id}/${product?.title.toLowerCase().replace(/[\s/]+/g, '-')}`"
             class="text-dark hover:text-primary font-medium transition-colors"
             >{{ product?.title }}</nuxt-link
           >
@@ -47,15 +47,18 @@
 
         <div class="flex items-center gap-x-1">
           <IconsTag class="lg:w-5 text-gray-shade5" />
-          <div class="flex items-center gap-x-1">
+          <nuxt-link
+            :to="`/category/${product?.category?.id}/${product?.category?.name.toLowerCase().replace(/[\s/]+/g, '-')}`"
+          >
             <Button
+              :as="'div'"
               variant="link"
               size="sm"
               class="p-0 text-gray-shade5 hover:text-primary capitalize"
             >
               {{ product?.category?.name.toLowerCase() }}
             </Button>
-          </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
