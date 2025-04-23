@@ -54,6 +54,13 @@
             </li>
             <li>
               <NuxtLink
+                :to="localePath('/ssr-filter-products')"
+                class="text-dark-secondary hover:text-secondary"
+                >Products (SSR Filter)</NuxtLink
+              >
+            </li>
+            <li>
+              <NuxtLink
                 :to="localePath('/about')"
                 class="text-dark-secondary hover:text-secondary"
                 >About</NuxtLink
