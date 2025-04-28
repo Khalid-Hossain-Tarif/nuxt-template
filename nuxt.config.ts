@@ -26,6 +26,8 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxtjs/i18n', '@pinia/nuxt'],
 
+  plugins: ['~/plugins/storeInit.ts'],
+
   i18n: i18nConfig,
 
   runtimeConfig: {

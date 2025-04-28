@@ -40,6 +40,15 @@ export const useAuthStore = defineStore("auth", {
   getters: {},
 
   actions: {
+    async initializeAuthStore() {
+      const token = Cookies.get("authToken");
+      // this.isAuthenticated = !!token;
+      if (token) {
+        this.token = token;
+        this.isAuthenticated = true;
+      }
+    },
+
     async verifyRegisteredEmail(email: string) {
       const config = useRuntimeConfig();
       const loading = useLoaderStore();
