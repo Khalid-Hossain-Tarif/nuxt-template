@@ -27,11 +27,13 @@
     <div class="container">
       <div class="flex gap-10">
         <div class="shrink-0 w-1/4">
-          <img
-            :src="authStore?.user?.avatar"
-            :alt="authStore?.user?.name"
-            class="rounded-full object-cover"
-          />
+          <template v-if="authStore?.user?.avatar">
+            <img
+              :src="authStore?.user?.avatar"
+              :alt="authStore?.user?.name"
+              class="h-full object-cover rounded"
+            />
+          </template>
         </div>
 
         <div class="grow space-y-6 divide-y divide-borderColor-light">

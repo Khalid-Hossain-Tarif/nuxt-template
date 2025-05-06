@@ -151,6 +151,10 @@
         @apply bg-transparent focus:outline-none;
     }
 
+    a, button {
+        @apply outline-none
+    }
+
     a {
         @apply cursor-pointer
     }

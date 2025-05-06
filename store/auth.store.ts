@@ -4,10 +4,12 @@ import { useLoaderStore } from "~/store/loader.store";
 import { defineStore } from "pinia";
 
 interface User {
+  id: any;
   name: string;
   email: string;
   password: string;
   avatar: string;
+  role: string;
 }
 
 interface LoginData {
@@ -42,10 +44,10 @@ export const useAuthStore = defineStore("auth", {
   actions: {
     async initializeAuthStore() {
       const token = Cookies.get("authToken");
-      // this.isAuthenticated = !!token;
       if (token) {
         this.token = token;
         this.isAuthenticated = true;
+        await this.getUserProfile();
       }
     },
 
@@ -98,7 +100,7 @@ export const useAuthStore = defineStore("auth", {
 
         Cookies.set("authToken", this.token, {
           expires: 5,
-          // sameSite: "Strict",
+          sameSite: "Strict",
         });
       } catch (error) {
         console.log("Error when login:", error);
@@ -115,7 +117,7 @@ export const useAuthStore = defineStore("auth", {
       this.token = "";
       this.refreshToken = "";
       this.user = null;
-      Cookies.remove("name");
+      Cookies.remove("authToken");
     },
 
     async getUserProfile() {
@@ -132,7 +134,7 @@ export const useAuthStore = defineStore("auth", {
         const response = await axios.get(
           config.public.apiBaseUrl + "/auth/profile",
           {
-            headers: { Authorization: `Bearer ${this.token}` },
+            headers: { Authorization: `Bearer ${token}` },
           }
         );
         this.user = response.data;
