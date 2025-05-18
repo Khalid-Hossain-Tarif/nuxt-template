@@ -8,9 +8,11 @@
     PopoverTrigger,
   } from "@/components/ui/popover";
   import { useAuthStore } from "~/store/auth.store";
+  import { useCartStore } from "~/store/cart.store";
 
   const localePath = useLocalePath();
   const authStore = useAuthStore();
+  const cartStore = useCartStore();
 
   const doLogout = async () => {
     await authStore.logout();
@@ -120,6 +122,12 @@
         </nav>
 
         <div class="flex items-center gap-x-3">
+          <Button
+            variant="link"
+            class="p-0"
+          >
+            {{ cartStore.cartItems.length }}
+          </Button>
           <LanguageSwitcher />
           <ColorModeSwitcher class="shrink-0" />
         </div>

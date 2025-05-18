@@ -24,7 +24,7 @@
             :key="index"
             :src="img ? img : 'https://i.imgur.com/cHddUCu.jpeg'"
             :alt="singleProduct?.title"
-            class="rounded"
+            class="rounded w-full h-[300px] object-contain"
           />
         </div>
 
@@ -41,17 +41,13 @@
             <p>
               <span class="font-medium text-dark">Price: </span>
               <span class="text-dark-secondary"
-              >{{ currency }}{{ singleProduct?.price }}</span
+                >{{ currency }}{{ singleProduct?.price }}</span
               >
             </p>
           </div>
 
-          <div class="flex items-center gap-x-4">
-            <AddToCart />
-            <Button
-              variant="secondary"
-            >Add to cart</Button
-            >
+          <div>
+            <AddToCart :item="singleProduct" />
           </div>
 
           <p class="text-sm">
