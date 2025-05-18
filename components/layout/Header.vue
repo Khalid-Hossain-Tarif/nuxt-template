@@ -18,6 +18,10 @@
     await authStore.logout();
     await navigateTo("/user/login");
   };
+
+  const goToCart = () => {
+    navigateTo("/cart");
+  };
 </script>
 
 <template>
@@ -125,8 +129,10 @@
           <Button
             variant="link"
             class="p-0"
+            @click="goToCart"
           >
-            {{ cartStore.cartItems.length }}
+            cart({{ cartStore.cartItems.length }} -
+            {{ cartStore.totalCartItems }})
           </Button>
           <LanguageSwitcher />
           <ColorModeSwitcher class="shrink-0" />

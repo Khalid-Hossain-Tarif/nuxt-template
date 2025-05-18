@@ -1,10 +1,12 @@
 export const useCartStore = defineStore("cart", {
   state: () => ({
-    cartItems: [],
+    cartItems: [] as any[],
   }),
 
   getters: {
     getCartItems: (state) => state.cartItems || [],
+    totalCartItems: (state) =>
+      state.cartItems.reduce((total, item) => total + item.quantity, 0),
   },
 
   actions: {
@@ -16,14 +18,23 @@ export const useCartStore = defineStore("cart", {
     },
 
     addToCart(item: any) {
-      const existingItem = this.cartItems.find((cartItem: any) => {
-        return cartItem.id === item.id;
-      });
+      const existingItem = this.cartItems.find(
+        (cartItem) => cartItem.id === item.id
+      );
 
-      this.cartItems.push({
-        ...item,
-        quantity: item.quantity || 1,
-      });
+      if (existingItem) {
+        existingItem.quantity += item.quantity || 1;
+      } else {
+        this.cartItems.push({
+          ...item,
+          quantity: item.quantity || 1,
+        });
+      }
+
+      // this.cartItems.push({
+      //   ...item,
+      //   quantity: item.quantity || 1,
+      // });
 
       this.saveCart();
     },

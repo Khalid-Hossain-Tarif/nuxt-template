@@ -20,7 +20,7 @@
     quantity.value++;
   };
 
-  const addToCart = () => {
+  const addToCartHandler = () => {
     const cartWithQuantity = {
       ...props.item,
       quantity: quantity.value,
@@ -50,7 +50,7 @@
 
     <div class="flex items-center gap-x-4">
       <Button
-        @click="addToCart"
+        @click="addToCartHandler"
         variant="secondary"
         >Add to cart</Button
       >
