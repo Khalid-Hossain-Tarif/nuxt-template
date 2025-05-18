@@ -3,6 +3,7 @@
   import { storeToRefs } from "pinia";
   import { useProductStore } from "~/store/product.store";
   import { currency } from "~/utils/Helper";
+  import AddToCart from "~/components/products/AddToCart.vue";
 
   const route = useRoute();
   const productStore = useProductStore();
@@ -27,19 +28,32 @@
           />
         </div>
 
-        <div class="col-span-2 space-y-2">
-          <h2 class="text-secondary text-2xl font-medium">
-            {{ singleProduct?.title }}
-          </h2>
-          <p class="line-clamp-3 text-sm text-dark-secondary">
-            {{ singleProduct?.description }}
-          </p>
-          <p class="text-sm">
-            <span class="font-medium text-dark">Price: </span>
-            <span class="text-dark-secondary"
+        <div class="col-span-2 space-y-5">
+          <div class="space-y-3">
+            <h2 class="text-secondary text-2xl font-medium">
+              {{ singleProduct?.title }}
+            </h2>
+
+            <p class="line-clamp-3 text-sm text-dark-secondary">
+              {{ singleProduct?.description }}
+            </p>
+
+            <p>
+              <span class="font-medium text-dark">Price: </span>
+              <span class="text-dark-secondary"
               >{{ currency }}{{ singleProduct?.price }}</span
+              >
+            </p>
+          </div>
+
+          <div class="flex items-center gap-x-4">
+            <AddToCart />
+            <Button
+              variant="secondary"
+            >Add to cart</Button
             >
-          </p>
+          </div>
+
           <p class="text-sm">
             <span class="font-medium text-dark">Category: </span>
             <nuxt-link
