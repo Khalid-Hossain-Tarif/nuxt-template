@@ -1,6 +1,7 @@
 export const useCartStore = defineStore("cart", {
   state: () => ({
     cartItems: [] as any[],
+    quantity: 1,
   }),
 
   getters: {
@@ -11,10 +12,41 @@ export const useCartStore = defineStore("cart", {
 
   actions: {
     initCart() {
-      const savedCartItems = localStorage.getItem("cartItems");
-      if (savedCartItems) {
-        this.cartItems = JSON.parse(savedCartItems);
+      if (import.meta.client) {
+        const savedCartItems = localStorage.getItem("cartItems");
+        if (savedCartItems) {
+          this.cartItems = JSON.parse(savedCartItems);
+        }
       }
+    },
+
+    resetQuantity() {
+      this.quantity = 1;
+    },
+
+    handleQuantity(type: string) {
+      if (type === "decrease") {
+        if (this.quantity > 1) {
+          this.quantity--;
+        }
+      } else {
+        this.quantity++;
+      }
+    },
+
+    updateQuantity(type: string, itemId: number) {
+      const item = this.cartItems.find((cartItem) => cartItem.id === itemId);
+      if (!item) return;
+
+      if (type === "decrease") {
+        if (item.quantity > 1) {
+          item.quantity--;
+        }
+      } else {
+        item.quantity++;
+      }
+
+      this.saveCart();
     },
 
     addToCart(item: any) {
@@ -23,19 +55,22 @@ export const useCartStore = defineStore("cart", {
       );
 
       if (existingItem) {
-        existingItem.quantity += item.quantity || 1;
+        existingItem.quantity += item.quantity;
       } else {
         this.cartItems.push({
           ...item,
-          quantity: item.quantity || 1,
+          quantity: this.quantity,
         });
       }
 
-      // this.cartItems.push({
-      //   ...item,
-      //   quantity: item.quantity || 1,
-      // });
+      this.saveCart();
+      this.resetQuantity();
+    },
 
+    removeItem(itemId: number) {
+      this.cartItems = this.cartItems.filter(
+        (cartItem) => cartItem.id !== itemId
+      );
       this.saveCart();
     },
 
@@ -45,7 +80,9 @@ export const useCartStore = defineStore("cart", {
     },
 
     saveCart() {
-      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+      if (import.meta.client) {
+        localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+      }
     },
   },
 });
