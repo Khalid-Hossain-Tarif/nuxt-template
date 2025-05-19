@@ -50,8 +50,9 @@
 
             <div class="shrink-0">
               <p>
-                {{ item?.quantity * item?.price }} Tk. ({{ item?.quantity }} x
-                {{ item?.price }} tk)
+                <span class="font-semibold"
+                  >{{ item?.quantity * item?.price }} Tk. </span
+                >({{ item?.quantity }} x {{ item?.price }} tk)
               </p>
             </div>
           </li>
@@ -63,15 +64,15 @@
           <ul class="space-y-3 divide-y divide-dashed divide-borderColor">
             <li class="pt-3 flex items-center justify-between gap-x-2">
               <h5>Subtotal</h5>
-              <p>500 Tk.</p>
+              <p>{{ cartStore.subtotal }} Tk.</p>
             </li>
             <li class="pt-3 flex items-center justify-between gap-x-2">
               <h5>Delivery charge</h5>
-              <p>50 Tk.</p>
+              <p>{{ cartStore.deliveryCharge }} Tk.</p>
             </li>
             <li class="pt-3 flex items-center justify-between gap-x-2">
               <h5 class="font-bold">Total</h5>
-              <p class="font-bold">100 Tk.</p>
+              <p class="font-bold">{{ cartStore.total }} Tk.</p>
             </li>
           </ul>
 

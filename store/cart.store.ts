@@ -2,12 +2,23 @@ export const useCartStore = defineStore("cart", {
   state: () => ({
     cartItems: [] as any[],
     quantity: 1,
+    deliveryCharge: 50,
   }),
 
   getters: {
     getCartItems: (state) => state.cartItems || [],
     totalCartItems: (state) =>
       state.cartItems.reduce((total, item) => total + item.quantity, 0),
+    subtotal: (state) =>
+      state.cartItems.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      ),
+    total: (state) =>
+      state.cartItems.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      ) + state.deliveryCharge,
   },
 
   actions: {

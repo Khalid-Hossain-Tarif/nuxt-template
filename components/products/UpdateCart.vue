@@ -15,14 +15,14 @@
     <button
       @click="cartStore.updateQuantity('decrease', props.item.id)"
       :disabled="props.item.quantity <= 1"
-      class="size-9 rounded-full border border-dark-secondary text-dark font-semibold disabled:opacity-30"
+      class="size-8 rounded-full border border-dark-secondary text-dark font-semibold disabled:opacity-30"
     >
       -
     </button>
     <p class="px-4 text-dark font-semibold">{{ props.item.quantity }}</p>
     <button
       @click="cartStore.updateQuantity('increase', props.item.id)"
-      class="size-9 rounded-full border border-dark-secondary text-dark font-semibold"
+      class="size-8 rounded-full border border-dark-secondary text-dark font-semibold"
     >
       +
     </button>
