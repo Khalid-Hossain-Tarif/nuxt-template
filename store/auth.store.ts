@@ -1,7 +1,8 @@
+import { defineStore } from "pinia";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useLoaderStore } from "~/store/loader.store";
-import { defineStore } from "pinia";
+import { useCartStore } from "./cart.store";
 
 interface User {
   id: any;
@@ -105,6 +106,7 @@ export const useAuthStore = defineStore("auth", {
       } catch (error) {
         console.log("Error when login:", error);
       } finally {
+        const cartStore = useCartStore();
         loading.stopLoading();
         // console.log("login successful.", this.isAuthenticated);
         // console.log("token: ", this.token);
@@ -118,6 +120,8 @@ export const useAuthStore = defineStore("auth", {
       this.refreshToken = "";
       this.user = null;
       Cookies.remove("authToken");
+      const cartStore = useCartStore();
+      cartStore.clearCart();
     },
 
     async getUserProfile() {

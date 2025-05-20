@@ -2,6 +2,11 @@
   import { useCartStore } from "~/store/cart.store";
   import { storeToRefs } from "pinia";
   import UpdateCart from "~/components/products/UpdateCart.vue";
+  import NoResults from "~/components/common/NoResults.vue";
+
+  definePageMeta({
+    middleware: "auth",
+  });
 
   const cartStore = useCartStore();
   const { cartItems } = storeToRefs(cartStore);
@@ -10,7 +15,10 @@
 <template>
   <div>
     <div class="container py-10">
-      <div class="flex items-start gap-8">
+      <div
+        v-if="cartItems.length"
+        class="flex items-start gap-8"
+      >
         <ul class="grow space-y-4 divide-y divide-borderColor">
           <li
             v-for="item in cartItems"
@@ -82,6 +90,13 @@
             >Checkout</Button
           >
         </div>
+      </div>
+
+      <div v-else>
+        <NoResults
+          msg="Your cart is empty!"
+          description="Please, add some products to your cart."
+        />
       </div>
     </div>
   </div>
