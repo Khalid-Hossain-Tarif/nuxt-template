@@ -26,8 +26,11 @@ export const useCartStore = defineStore("cart", {
 
   actions: {
     initCart() {
-      if (import.meta.client) {
-        const savedCartItems = localStorage.getItem("cartItems");
+      const authStore = useAuthStore();
+      if (import.meta.client && authStore.isAuthenticated) {
+        const savedCartItems = localStorage.getItem(
+          `cartItems-user-${authStore.user?.id}`
+        );
         if (savedCartItems) {
           this.cartItems = JSON.parse(savedCartItems);
         }
@@ -98,12 +101,16 @@ export const useCartStore = defineStore("cart", {
 
     clearCart() {
       this.cartItems = [];
-      this.saveCart();
+      // this.saveCart();
     },
 
     saveCart() {
-      if (import.meta.client) {
-        localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+      const authStore = useAuthStore();
+      if (import.meta.client && authStore.isAuthenticated) {
+        localStorage.setItem(
+          `cartItems-user-${authStore.user?.id}`,
+          JSON.stringify(this.cartItems)
+        );
       }
     },
   },

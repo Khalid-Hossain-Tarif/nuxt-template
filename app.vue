@@ -1,4 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import { watch } from "vue";
+  import { useAuthStore } from "~/store/auth.store";
+  import { useCartStore } from "~/store/cart.store";
+
+  const authStore = useAuthStore();
+  const cartStore = useCartStore();
+
+  if (import.meta.client) {
+    watch(
+      () => authStore.user?.id,
+      (userId) => {
+        if (userId) {
+          cartStore.initCart();
+        }
+      },
+      { immediate: true }
+    );
+  }
+</script>
 
 <template>
   <div>

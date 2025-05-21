@@ -6,8 +6,8 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const cartStore = useCartStore();
   if (import.meta.client) {
     try {
-      await Promise.all([authStore.initializeAuthStore()]);
-      await Promise.all([cartStore.initCart()]);
+      await authStore.initializeAuthStore();
+      cartStore.initCart();
     } catch (e) {
       console.log(e);
       console.log("error from initial store call.");

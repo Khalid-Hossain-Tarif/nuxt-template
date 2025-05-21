@@ -95,7 +95,7 @@
       <div v-else>
         <NoResults
           msg="Your cart is empty!"
-          description="Please, add some products to your cart."
+          description="Continue shopping to add products to your cart."
         />
       </div>
     </div>

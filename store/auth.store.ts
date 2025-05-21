@@ -106,11 +106,7 @@ export const useAuthStore = defineStore("auth", {
       } catch (error) {
         console.log("Error when login:", error);
       } finally {
-        const cartStore = useCartStore();
         loading.stopLoading();
-        // console.log("login successful.", this.isAuthenticated);
-        // console.log("token: ", this.token);
-        // console.log("refreshToken: ", this.refreshToken);
       }
     },
 
