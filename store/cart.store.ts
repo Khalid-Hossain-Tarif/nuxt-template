@@ -27,7 +27,7 @@ export const useCartStore = defineStore("cart", {
   actions: {
     initCart() {
       const authStore = useAuthStore();
-      if (import.meta.client && authStore.isAuthenticated) {
+      if (authStore.user?.id) {
         const savedCartItems = localStorage.getItem(
           `cartItems-user-${authStore.user?.id}`
         );
@@ -52,15 +52,17 @@ export const useCartStore = defineStore("cart", {
     },
 
     updateQuantity(type: string, itemId: number) {
-      const item = this.cartItems.find((cartItem) => cartItem.id === itemId);
-      if (!item) return;
+      const existingItem = this.cartItems.find(
+        (cartItem) => cartItem.id === itemId
+      );
+      if (!existingItem) return;
 
       if (type === "decrease") {
-        if (item.quantity > 1) {
-          item.quantity--;
+        if (existingItem.quantity > 1) {
+          existingItem.quantity--;
         }
       } else {
-        item.quantity++;
+        existingItem.quantity++;
       }
 
       this.saveCart();
@@ -106,7 +108,7 @@ export const useCartStore = defineStore("cart", {
 
     saveCart() {
       const authStore = useAuthStore();
-      if (import.meta.client && authStore.isAuthenticated) {
+      if (authStore.user?.id) {
         localStorage.setItem(
           `cartItems-user-${authStore.user?.id}`,
           JSON.stringify(this.cartItems)

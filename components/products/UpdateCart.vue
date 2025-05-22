@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-  import { storeToRefs } from "pinia";
   import { useCartStore } from "~/store/cart.store";
 
   const props = defineProps<{
@@ -7,7 +6,6 @@
   }>();
 
   const cartStore = useCartStore();
-  const { quantity } = storeToRefs(cartStore);
 </script>
 
 <template>

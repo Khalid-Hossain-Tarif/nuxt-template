@@ -6,17 +6,17 @@
   const authStore = useAuthStore();
   const cartStore = useCartStore();
 
-  if (import.meta.client) {
-    watch(
-      () => authStore.user?.id,
-      (userId) => {
-        if (userId) {
-          cartStore.initCart();
-        }
-      },
-      { immediate: true }
-    );
-  }
+  // if (import.meta.client) {
+  //   watch(
+  //     () => authStore.user?.id,
+  //     (userId) => {
+  //       if (userId) {
+  //         cartStore.initCart();
+  //       }
+  //     },
+  //     { immediate: true }
+  //   );
+  // }
 </script>
 
 <template>
