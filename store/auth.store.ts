@@ -116,8 +116,8 @@ export const useAuthStore = defineStore("auth", {
       this.refreshToken = "";
       this.user = null;
       Cookies.remove("authToken");
-      const cartStore = useCartStore();
-      cartStore.clearCart();
+      // const cartStore = useCartStore();
+      // cartStore.clearCart();
     },
 
     async getUserProfile() {

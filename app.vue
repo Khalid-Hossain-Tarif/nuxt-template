@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import { watch } from "vue";
-  import { useAuthStore } from "~/store/auth.store";
-  import { useCartStore } from "~/store/cart.store";
+  // import { useAuthStore } from "~/store/auth.store";
+  // import { useCartStore } from "~/store/cart.store";
+  //
+  // const authStore = useAuthStore();
+  // const cartStore = useCartStore();
 
-  const authStore = useAuthStore();
-  const cartStore = useCartStore();
-
+  //If userWise add to cart
   // if (import.meta.client) {
   //   watch(
   //     () => authStore.user?.id,

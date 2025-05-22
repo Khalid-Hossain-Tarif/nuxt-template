@@ -26,15 +26,21 @@ export const useCartStore = defineStore("cart", {
 
   actions: {
     initCart() {
-      const authStore = useAuthStore();
-      if (authStore.user?.id) {
-        const savedCartItems = localStorage.getItem(
-          `cartItems-user-${authStore.user?.id}`
-        );
-        if (savedCartItems) {
-          this.cartItems = JSON.parse(savedCartItems);
-        }
+      // const authStore = useAuthStore();
+      const savedCartItems = localStorage.getItem("cartItems");
+      if (savedCartItems) {
+        this.cartItems = JSON.parse(savedCartItems);
       }
+
+      //If userWise add to cart
+      // if (authStore.user?.id) {
+      //   const savedCartItems = localStorage.getItem(
+      //     `cartItems-user-${authStore.user?.id}`
+      //   );
+      //   if (savedCartItems) {
+      //     this.cartItems = JSON.parse(savedCartItems);
+      //   }
+      // }
     },
 
     resetQuantity() {
@@ -103,17 +109,20 @@ export const useCartStore = defineStore("cart", {
 
     clearCart() {
       this.cartItems = [];
-      // this.saveCart();
+      this.saveCart();
     },
 
     saveCart() {
-      const authStore = useAuthStore();
-      if (authStore.user?.id) {
-        localStorage.setItem(
-          `cartItems-user-${authStore.user?.id}`,
-          JSON.stringify(this.cartItems)
-        );
-      }
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+
+      //If userWise add to cart
+      // const authStore = useAuthStore();
+      // if (authStore.user?.id) {
+      //   localStorage.setItem(
+      //     `cartItems-user-${authStore.user?.id}`,
+      //     JSON.stringify(this.cartItems)
+      //   );
+      // }
     },
   },
 });
