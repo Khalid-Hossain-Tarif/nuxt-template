@@ -18,6 +18,32 @@
       emit("changePage", page);
     }
   };
+
+  const visiblePages = computed(() => {
+    const pages = [];
+    const total = totalPages.value;
+    const current = props.currentPage;
+
+    if (total <= 7) {
+      // Show all if total pages <= 7
+      for (let i = 1; i <= total; i++) pages.push(i);
+    } else {
+      pages.push(1);
+
+      if (current > 4) pages.push("...");
+
+      const start = Math.max(2, current - 2);
+      const end = Math.min(total - 1, current + 2);
+
+      for (let i = start; i <= end; i++) pages.push(i);
+
+      if (current < total - 3) pages.push("...");
+
+      pages.push(total);
+    }
+
+    return pages;
+  });
 </script>
 
 <template>
@@ -39,19 +65,31 @@
       </button>
 
       <div class="space-x-1">
-        <button
-          v-for="(page, index) in totalPages"
+        <template
+          v-for="(page, index) in visiblePages"
           :key="`page-${index}`"
-          @click="goToPage(page)"
-          class="size-10 rounded-full border"
-          :class="
-            page === currentPage
-              ? 'bg-primary border-primary text-white'
-              : 'bg-white border-borderColor-secondary text-dark'
-          "
         >
-          {{ page }}
-        </button>
+          <span v-if="page !== '...'">
+            <button
+              @click="goToPage(page as number)"
+              class="size-10 rounded-full border"
+              :class="
+                page === currentPage
+                  ? 'bg-primary border-primary text-white'
+                  : 'bg-white border-borderColor-secondary text-dark'
+              "
+            >
+              {{ page }}
+            </button>
+          </span>
+          <span
+            v-else
+            :key="`dots-${index}`"
+            class="px-2 text-gray-500"
+          >
+            ...
+          </span>
+        </template>
       </div>
 
       <button
