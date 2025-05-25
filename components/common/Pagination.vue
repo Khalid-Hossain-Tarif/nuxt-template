@@ -57,11 +57,11 @@
           <button
             @click="goToPage(page as number)"
             class="size-10 rounded-full border"
-            :class="{
-              'bg-primary border-primary text-white': page === currentPage,
-              'bg-white border-borderColor-secondary text-dark':
-                page !== currentPage,
-            }"
+            :class="
+              page === currentPage
+                ? 'bg-primary border-primary text-white'
+                : 'bg-white border-borderColor-secondary text-dark'
+            "
           >
             {{ page }}
           </button>
