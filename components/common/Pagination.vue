@@ -18,32 +18,6 @@
       emit("changePage", page);
     }
   };
-
-  const visiblePages = computed(() => {
-    const pages = [];
-    const total = totalPages.value;
-    const current = props.currentPage;
-
-    if (total <= 7) {
-      // Show all if total pages <= 7
-      for (let i = 1; i <= total; i++) pages.push(i);
-    } else {
-      pages.push(1);
-
-      if (current > 4) pages.push("...");
-
-      const start = Math.max(2, current - 2);
-      const end = Math.min(total - 1, current + 2);
-
-      for (let i = start; i <= end; i++) pages.push(i);
-
-      if (current < total - 3) pages.push("...");
-
-      pages.push(total);
-    }
-
-    return pages;
-  });
 </script>
 
 <template>
@@ -56,6 +30,7 @@
       >
         <IconsDoubleArrow class="rotate-90 mx-auto" />
       </button>
+
       <button
         @click="goToPage(currentPage - 1)"
         :disabled="currentPage === 1"
@@ -64,33 +39,34 @@
         <IconsArrow class="rotate-90 mx-auto" />
       </button>
 
-      <div class="space-x-1">
-        <template
-          v-for="(page, index) in visiblePages"
-          :key="`page-${index}`"
+      <template
+        v-for="(page, index) in totalPages"
+        :key="`page-${index}`"
+      >
+        <span
+          v-if="
+            Math.abs(page - currentPage < 3) ||
+            page === totalPages ||
+            page === 1
+          "
+          :class="{
+            first: page === 1 && Math.abs(page - currentPage) > 3,
+            last: page === totalPages && Math.abs(page - currentPage) > 3,
+          }"
         >
-          <span v-if="page !== '...'">
-            <button
-              @click="goToPage(page as number)"
-              class="size-10 rounded-full border"
-              :class="
-                page === currentPage
-                  ? 'bg-primary border-primary text-white'
-                  : 'bg-white border-borderColor-secondary text-dark'
-              "
-            >
-              {{ page }}
-            </button>
-          </span>
-          <span
-            v-else
-            :key="`dots-${index}`"
-            class="px-2 text-gray-500"
+          <button
+            @click="goToPage(page as number)"
+            class="size-10 rounded-full border"
+            :class="{
+              'bg-primary border-primary text-white': page === currentPage,
+              'bg-white border-borderColor-secondary text-dark':
+                page !== currentPage,
+            }"
           >
-            ...
-          </span>
-        </template>
-      </div>
+            {{ page }}
+          </button>
+        </span>
+      </template>
 
       <button
         @click="goToPage(currentPage + 1)"
@@ -99,6 +75,7 @@
       >
         <IconsArrow class="-rotate-90 mx-auto" />
       </button>
+
       <button
         @click="goToPage(totalPages)"
         :disabled="currentPage === totalPages"
@@ -109,3 +86,13 @@
     </div>
   </div>
 </template>
+
+<style scoped>
+  .first {
+    @apply block after:content-["..."] after:ml-2.5;
+  }
+
+  .last {
+    @apply block before:content-["..."] before:mr-2.5;
+  }
+</style>
